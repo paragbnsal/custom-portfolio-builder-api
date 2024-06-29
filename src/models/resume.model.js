@@ -32,7 +32,7 @@ const resumeSchema = new Schema(
     workExperience: [workExperienceSchema],
     education: [educationSchema],
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
 
 export default model("resume", resumeSchema);

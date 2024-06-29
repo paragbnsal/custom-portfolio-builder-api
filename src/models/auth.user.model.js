@@ -17,7 +17,7 @@ const schema = new Schema(
       ref: "resume",
     },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
 
 // Pre-save middleware to hash the password before saving

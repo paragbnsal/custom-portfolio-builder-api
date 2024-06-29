@@ -1,5 +1,3 @@
-import jwt from "jsonwebtoken";
-
 import UserModel from "../models/auth.user.model.js";
 
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -7,7 +5,13 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 
 const getAllUsers = asyncHandler(async (req, res) => {
-  const allUsers = await UserModel.find({}).select(["-password"]);
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 20;
+
+  const allUsers = await UserModel.find({})
+    .skip(limit * (page - 1))
+    .limit(limit)
+    .select(["-password"]);
   return res.status(200).json(new ApiResponse(200, allUsers, "OK"));
 });
 
