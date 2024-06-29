@@ -1,15 +1,17 @@
 import { Router } from "express";
+
 import {
   signup,
   signin,
   getAllUsers,
   getUserById,
 } from "../controllers/auth.user.controller.js";
+import { checkAuth } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/", getAllUsers);
-router.get("/:id", getUserById);
+router.get("/", checkAuth, getAllUsers);
+router.get("/:id", checkAuth, getUserById);
 router.post("/auth/signin", signin);
 router.post("/auth/signup", signup);
 
