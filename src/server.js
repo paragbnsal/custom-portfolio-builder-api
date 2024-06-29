@@ -7,6 +7,7 @@ import morgan from "morgan";
 const morganFormat = ":method :url :status :response-time ms :res[content-length] bytes";
 
 // Import Controller
+import userRouter from "./routes/user.routes.js";
 import healthCheckRouter from "./routes/health.routes.js";
 
 const app = express();
@@ -35,6 +36,7 @@ app.use(
 );
 
 // Init Controllers
+app.use("/user", userRouter);
 app.use("/health", healthCheckRouter);
 
 export default app;
