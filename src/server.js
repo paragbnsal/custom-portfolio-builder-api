@@ -36,7 +36,7 @@ app.use(
 );
 
 // Init Controllers
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 app.use("/health", healthCheckRouter);
 
 export default app;
