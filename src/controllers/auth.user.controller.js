@@ -20,6 +20,11 @@ const getUserById = asyncHandler(async (req, res) => {
   return res.status(200).json(new ApiResponse(200, user, "OK"));
 });
 
+const getCurrentUser = asyncHandler(async (req, res) => {
+  const user = req.user;
+  return res.status(200).json(new ApiResponse(200, user, "OK"));
+});
+
 const signup = asyncHandler(async (req, res) => {
   const { name, mobile, email, username, password, location } = req.body;
 
@@ -60,4 +65,4 @@ const signin = asyncHandler(async (req, res) => {
   return res.status(200).json(new ApiResponse(200, { token }, "OK"));
 });
 
-export { getAllUsers, getUserById, signup, signin };
+export { getAllUsers, getUserById, signup, signin, getCurrentUser };
