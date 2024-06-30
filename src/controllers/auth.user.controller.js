@@ -17,6 +17,8 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 const getUserById = asyncHandler(async (req, res) => {
   const user = await UserModel.findById(req.params.id);
+  if (!user)
+    throw new ApiError(409, "The User with requested Id was not found");
   return res.status(200).json(new ApiResponse(200, user, "OK"));
 });
 
